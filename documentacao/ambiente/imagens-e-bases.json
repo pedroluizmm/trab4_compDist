@@ -1,0 +1,30 @@
+{
+  "bases": {
+    "python": "python:3.12-slim-bookworm@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337",
+    "ruby": "ruby:3.3-slim-bookworm@sha256:245eafdd393b298a1bcc6948504b59a117539d46a7fd12ebb8bd2c103f814566",
+    "php": "php:8.3-apache@sha256:11093ce0630a495ce9436647d2939b5ca44b411d2a04917afe8b2d051ae2d2ed"
+  },
+  "images": {
+    "nginx:1.28-alpine": {
+      "id": "sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236",
+      "repo_digests": [
+        "nginx@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236"
+      ],
+      "pinned_reference": "nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236"
+    },
+    "redis:7-alpine": {
+      "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+      "repo_digests": [
+        "redis@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499"
+      ],
+      "pinned_reference": "redis:7-alpine@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499"
+    },
+    "locustio/locust:2.46.7": {
+      "id": "sha256:8492fcaa6a07314551590f579219204e459d9fdc9dde060843bd2896e7a7259f",
+      "repo_digests": [
+        "locustio/locust@sha256:8492fcaa6a07314551590f579219204e459d9fdc9dde060843bd2896e7a7259f"
+      ],
+      "pinned_reference": "locustio/locust:2.46.7@sha256:8492fcaa6a07314551590f579219204e459d9fdc9dde060843bd2896e7a7259f"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+name: trabalho4-linkextractor
+
+x-api: &api
+  cpus: 1.0
+  mem_limit: 512m
+  pids_limit: 128
+  restart: "no"
+  environment: &api-env
+    CACHE_ENABLED: ${CACHE_ENABLED:-false}
+    REDIS_URL: redis://redis:6379/0
+    UPSTREAM_TIMEOUT: "5"
+  healthcheck:
+    interval: 5s
+    timeout: 3s
+    retries: 12
+    start_period: 5s
+
+services:
+  paginas:
+    image: nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+    cpus: 0.5
+    mem_limit: 64m
+    volumes:
+      - ./paginas-teste/html:/usr/share/nginx/html:ro
+      - ./paginas-teste/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports: ["127.0.0.1:8084:80"]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/pagina01.html"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging: {driver: json-file, options: {max-size: "5m", max-file: "2"}}
+  redis:
+    image: redis:7-alpine@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "64mb", "--maxmemory-policy", "noeviction"]
+    cpus: 0.5
+    mem_limit: 128m
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  api-python:
+    <<: *api
+    image: trabalho4-api-python:1
+    build: ./api-python
+    ports: ["127.0.0.1:5104:8080"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health',timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+  api-ruby:
+    <<: *api
+    image: trabalho4-api-ruby:1
+    build: ./api-ruby
+    environment:
+      <<: *api-env
+      RACK_ENV: production
+      HTTP_PROXY: ""
+      http_proxy: ""
+    ports: ["127.0.0.1:5106:8080"]
+    healthcheck:
+      test: ["CMD", "ruby", "-rnet/http", "-e", "exit(Net::HTTP.get_response(URI('http://127.0.0.1:8080/health')).code == '200' ? 0 : 1)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+  web:
+    image: trabalho4-web:1
+    build: ./web
+    cpus: 0.25
+    mem_limit: 128m
+    ports: ["127.0.0.1:8085:80"]
+  locust:
+    image: locustio/locust:2.46.7@sha256:8492fcaa6a07314551590f579219204e459d9fdc9dde060843bd2896e7a7259f
+    profiles: ["tools"]
+    cpus: 2.0
+    mem_limit: 512m
+    pids_limit: 128
+    working_dir: /work
+    volumes:
+      - ./:/work:ro
+      - ./resultados:/results
+    entrypoint: ["locust"]

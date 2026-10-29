@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "original_files_unchanged": 36,
+  "runs": [
+    {
+      "run_id": "20261029-012141-A-u5-r1",
+      "scenario": "A",
+      "calls": 650,
+      "sequences": 65,
+      "users": 5,
+      "minimum_sequences_per_user": 12,
+      "all_ten_unique_urls": true,
+      "raw_mean_matches": true,
+      "native_csv_matches": true,
+      "cache_headers_match": true,
+      "no_restart_or_oom": true
+    },
+    {
+      "run_id": "20261029-012232-B-u5-r1",
+      "scenario": "B",
+      "calls": 670,
+      "sequences": 67,
+      "users": 5,
+      "minimum_sequences_per_user": 12,
+      "all_ten_unique_urls": true,
+      "raw_mean_matches": true,
+      "native_csv_matches": true,
+      "cache_headers_match": true,
+      "no_restart_or_oom": true
+    },
+    {
+      "run_id": "20261029-012332-C-u5-r1",
+      "scenario": "C",
+      "calls": 640,
+      "sequences": 64,
+      "users": 5,
+      "minimum_sequences_per_user": 11,
+      "all_ten_unique_urls": true,
+      "raw_mean_matches": true,
+      "native_csv_matches": true,
+      "cache_headers_match": true,
+      "no_restart_or_oom": true
+    },
+    {
+      "run_id": "20261029-012425-D-u5-r1",
+      "scenario": "D",
+      "calls": 680,
+      "sequences": 68,
+      "users": 5,
+      "minimum_sequences_per_user": 12,
+      "all_ten_unique_urls": true,
+      "raw_mean_matches": true,
+      "native_csv_matches": true,
+      "cache_headers_match": true,
+      "no_restart_or_oom": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-10-29T01:27:28.413546-03:00",
+  "phases_completed": [
+    1,
+    2,
+    3
+  ],
+  "awaiting_phase": 4,
+  "official_started": false,
+  "pilot_runs_valid": 4,
+  "pilot_runs_excluded": 5,
+  "measured_calls": 2640,
+  "complete_sequences": 264,
+  "failures": 0,
+  "original_files_unchanged": 36,
+  "source_files_archived": 39,
+  "source_archive_sha256": "52fdc9389642d7925309d07c21be68030e71634ad8ba5933ad49618ad636aa64",
+  "graph_visually_reviewed": true,
+  "independent_raw_audit_passed": true,
+  "project_containers_stopped": true,
+  "external_projects_unchanged": true
+}

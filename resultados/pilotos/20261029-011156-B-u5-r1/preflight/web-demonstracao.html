@@ -1,0 +1,8 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Trabalho 4 | Link Extractor</title>
+<style>body{font:17px system-ui;background:#101728;color:#edf4ff;max-width:960px;margin:50px auto;padding:20px}h1{color:#55d9ff}form{display:grid;gap:12px}input,select,button{font:inherit;padding:12px;border-radius:8px}button{background:#4064ff;color:white;border:0}a{color:#55d9ff}li{margin:8px 0}.error{color:#ff8eac}</style></head><body>
+<p>COMPUTAÇÃO DISTRIBUÍDA / TRABALHO 4</p><h1>Link Extractor</h1>
+<p>Interface PHP de demonstração. Escolha uma das dez páginas controladas.</p>
+<form><select name="api"><option value="python" selected>Python</option><option value="ruby" >Ruby</option></select>
+<select name="url"><option selected>http://paginas/pagina01.html</option><option >http://paginas/pagina02.html</option><option >http://paginas/pagina03.html</option><option >http://paginas/pagina04.html</option><option >http://paginas/pagina05.html</option><option >http://paginas/pagina06.html</option><option >http://paginas/pagina07.html</option><option >http://paginas/pagina08.html</option><option >http://paginas/pagina09.html</option><option >http://paginas/pagina10.html</option></select>
+<button name="extract" value="1">Extrair links</button></form>
+<h2>5 links extraídos / python</h2><p>http://paginas/pagina01.html</p><ul><li>[IMG] → http://paginas/destino/1/0?a=1&amp;b=2</li><li>Página 01 link 01 → http://paginas/relativo-1.html</li><li>Página 01 link 02 → https://example.org/pagina/1/2</li><li>Página 01 link 03 → http://paginas/pagina01.html#secao-3</li><li>Página 01 link 04 → http://paginas/raiz-4</li></ul><footer><p>Adaptado de <a href="https://github.com/ibnesayeed/linkextractor">ibnesayeed/linkextractor</a> (MIT).</p></footer></body></html>

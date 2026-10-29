@@ -1,0 +1,56 @@
+{
+  "id": "edebf26056eff142837a0c4fffdd6c8312b88fdcfda9eda4ada9baba21328254",
+  "restart_count": 0,
+  "state": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 7180,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-29T04:12:00.866774298Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+      "Status": "healthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-10-29T04:12:11.906352864Z",
+          "End": "2026-10-29T04:12:12.650937591Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-29T04:12:17.651902497Z",
+          "End": "2026-10-29T04:12:18.464053203Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-29T04:12:23.462377055Z",
+          "End": "2026-10-29T04:12:24.166737516Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-29T04:12:29.168561578Z",
+          "End": "2026-10-29T04:12:29.870006967Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-29T04:12:34.871875548Z",
+          "End": "2026-10-29T04:12:35.524694342Z",
+          "ExitCode": 0,
+          "Output": ""
+        }
+      ]
+    }
+  },
+  "image": "sha256:1a828676f301dea5b9a4d263269b0ff7acd1900e1ce0d48c4e5811642cd9af8d",
+  "cpu_quota_nano": 1000000000,
+  "memory_bytes": 536870912
+}

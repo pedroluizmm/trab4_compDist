@@ -1,0 +1,163 @@
+name: trabalho4-linkextractor
+services:
+  api-python:
+    build:
+      context: C:\compDist\Trabalho4-LinkExtractor\trabalho4\api-python
+      dockerfile: Dockerfile
+    cpus: 1
+    environment:
+      CACHE_ENABLED: "false"
+      REDIS_URL: redis://redis:6379/0
+      UPSTREAM_TIMEOUT: "5"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health',timeout=2)
+      timeout: 3s
+      interval: 5s
+      retries: 12
+      start_period: 5s
+    image: trabalho4-api-python:1
+    mem_limit: "536870912"
+    networks:
+      default: null
+    pids_limit: 128
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 8080
+        published: "5104"
+        protocol: tcp
+    restart: "no"
+  api-ruby:
+    build:
+      context: C:\compDist\Trabalho4-LinkExtractor\trabalho4\api-ruby
+      dockerfile: Dockerfile
+    cpus: 1
+    environment:
+      CACHE_ENABLED: "false"
+      HTTP_PROXY: ""
+      RACK_ENV: production
+      REDIS_URL: redis://redis:6379/0
+      UPSTREAM_TIMEOUT: "5"
+      http_proxy: ""
+    healthcheck:
+      test:
+        - CMD
+        - ruby
+        - -rnet/http
+        - -e
+        - 'exit(Net::HTTP.get_response(URI(''http://127.0.0.1:8080/health'')).code == ''200'' ? 0 : 1)'
+      timeout: 3s
+      interval: 5s
+      retries: 12
+      start_period: 5s
+    image: trabalho4-api-ruby:1
+    mem_limit: "536870912"
+    networks:
+      default: null
+    pids_limit: 128
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 8080
+        published: "5106"
+        protocol: tcp
+    restart: "no"
+  paginas:
+    cpus: 0.5
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - -q
+        - -O
+        - /dev/null
+        - http://127.0.0.1/pagina01.html
+      timeout: 3s
+      interval: 5s
+      retries: 12
+    image: nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+    logging:
+      driver: json-file
+      options:
+        max-file: "2"
+        max-size: 5m
+    mem_limit: "67108864"
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 80
+        published: "8084"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\compDist\Trabalho4-LinkExtractor\trabalho4\paginas-teste\html
+        target: /usr/share/nginx/html
+        read_only: true
+        bind: {}
+      - type: bind
+        source: C:\compDist\Trabalho4-LinkExtractor\trabalho4\paginas-teste\nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+        bind: {}
+  redis:
+    cpus: 0.5
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --maxmemory
+      - 64mb
+      - --maxmemory-policy
+      - noeviction
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      timeout: 3s
+      interval: 5s
+      retries: 12
+    image: redis:7-alpine@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
+    mem_limit: "134217728"
+    networks:
+      default: null
+  web:
+    build:
+      context: C:\compDist\Trabalho4-LinkExtractor\trabalho4\web
+      dockerfile: Dockerfile
+    cpus: 0.25
+    image: trabalho4-web:1
+    mem_limit: "134217728"
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 80
+        published: "8085"
+        protocol: tcp
+networks:
+  default:
+    name: trabalho4-linkextractor_default
+x-api:
+  cpus: 1
+  environment:
+    CACHE_ENABLED: "false"
+    REDIS_URL: redis://redis:6379/0
+    UPSTREAM_TIMEOUT: "5"
+  healthcheck:
+    interval: 5s
+    retries: 12
+    start_period: 5s
+    timeout: 3s
+  mem_limit: 512m
+  pids_limit: 128
+  restart: "no"

@@ -1,0 +1,614 @@
+# MISSÃO — TRABALHO 4 DE COMPUTAÇÃO DISTRIBUÍDA
+## Implementação completa, testes de carga, análise de desempenho e apresentação acadêmica
+
+**Papel:** Atue como engenheiro de software sênior, especialista em Docker, sistemas distribuídos, benchmarking, Locust, Python, Ruby, Redis e análise estatística de desempenho.
+
+**Objetivo:** Desenvolver e executar integralmente o Trabalho 4 de Computação Distribuída, conforme o enunciado do professor, utilizando o projeto open source Link Extractor.
+
+Não quero apenas orientações ou um plano. Quero que você **implemente, execute, valide, colete os resultados e produza os entregáveis reais**, respeitando os pontos de aprovação.
+
+---
+
+## 1. CONTEXTO E DIRETÓRIO
+
+Sistema utilizado:
+
+- Windows 11.
+- Ubuntu via WSL2.
+- Docker Desktop.
+- VS Code com Codex.
+- Computador com Intel Core Ultra 7 155H e 16 GB de RAM, sujeito à confirmação no ambiente.
+
+Diretório principal:
+
+`C:\compDist`
+
+Repositório original:
+
+https://github.com/ibnesayeed/linkextractor
+
+Criar o projeto em:
+
+`C:\compDist\Trabalho4-LinkExtractor`
+
+Se o diretório já existir, verificar seu conteúdo antes de qualquer operação. Não sobrescrever arquivos nem apagar trabalho existente.
+
+**É proibido alterar, excluir ou interferir em:**
+
+- `C:\compDist\trab3_compDist`
+- `C:\compDist\Trabalho-Docker`
+- Outros projetos, contêineres ou dados não relacionados ao Trabalho 4.
+
+Clonar o repositório original e preservar as etapas `step0` até `step6`.
+
+Criar uma implementação experimental própria em um diretório `trabalho4/`, sem alterar desnecessariamente o código original.
+
+Se o PDF do professor estiver disponível no workspace, leia-o e trate-o como fonte principal dos requisitos.
+
+---
+
+## 2. REQUISITOS EXATOS DO PROFESSOR
+
+O trabalho consiste em comparar duas versões do serviço Link Extractor:
+
+1. Python.
+2. Ruby.
+
+A aplicação utiliza uma interface PHP e um serviço Redis para cache.
+
+É obrigatório utilizar uma ferramenta de teste de carga configurável por script, preferencialmente **Locust**.
+
+Cada usuário virtual deve executar uma **sequência de dez invocações ao serviço de extração de links**, utilizando uma URL diferente em cada invocação.
+
+Os experimentos devem variar:
+
+- Quantidade de usuários virtuais.
+- Implementação da API: Python ou Ruby.
+- Utilização do cache: ligado ou desligado.
+
+As métricas devem ser armazenadas para posterior análise, incluindo tempo médio, mediana e percentis.
+
+**Entregável obrigatório:** apresentação compatível com Google Slides, contendo:
+
+- Nomes e matrículas dos integrantes.
+- Ferramenta de carga utilizada e explicação do script.
+- Cenários experimentais.
+- Gráficos dos resultados.
+
+Não inventar nomes ou matrículas. Deixar campos claramente identificados para preenchimento caso essas informações não estejam disponíveis.
+
+---
+
+## 3. ARQUITETURA EXPERIMENTAL
+
+Implementar quatro configurações comparáveis:
+
+| ID | API | Cache |
+|---|---|---|
+| A | Python | OFF |
+| B | Python | ON |
+| C | Ruby | OFF |
+| D | Ruby | ON |
+
+Utilizar contêineres Docker para os serviços.
+
+Preservar a interface PHP para demonstração da aplicação completa, mas executar os benchmarks principais diretamente contra a API de extração, evitando adicionar o processamento PHP como variável de comparação.
+
+Examinar especialmente:
+
+- `step4`: Python e PHP.
+- `step5`: Python, PHP e Redis.
+- `step6`: Ruby, PHP e Redis.
+
+Não presumir que essas etapas originais já forneçam as quatro configurações solicitadas.
+
+Criar um mecanismo confiável para habilitar e desabilitar cache nas duas APIs.
+
+No modo OFF, a API não deve consultar nem gravar no Redis.
+
+No modo ON, a API deve consultar Redis e reutilizar os resultados armazenados.
+
+**Importante:** limpar o Redis não significa desligar o cache.
+
+A implementação deve permitir comprovar que os modos realmente são diferentes.
+
+---
+
+## 4. AUDITORIA E COMPATIBILIDADE
+
+Antes de implementar:
+
+1. Verificar Git, Docker, Compose, WSL2 e Python.
+2. Identificar as versões e dependências originais.
+3. Examinar os Dockerfiles e serviços.
+4. Verificar se há incompatibilidades com versões antigas de Ruby, PHP, Flask, Sinatra e bibliotecas.
+5. Identificar diferenças funcionais entre os extratores.
+6. Confirmar como as APIs recebem URLs e retornam os links extraídos.
+7. Verificar como o Redis gera cache hits e misses.
+
+Corrigir problemas de compatibilidade quando necessário, documentando as mudanças.
+
+Evitar comparar uma API com servidor preparado para concorrência e outra com servidor de desenvolvimento limitado a uma única execução, sem explicar esse fator.
+
+Garantir condições comparáveis de CPU, memória, concorrência e ambiente.
+
+Não afirmar que uma linguagem é intrinsecamente mais rápida com base em diferenças de servidores, frameworks ou bibliotecas.
+
+---
+
+## 5. DEZ URLs CONTROLADAS
+
+Criar um conjunto fixo de **dez URLs diferentes**, preferencialmente hospedadas em um serviço HTML local.
+
+Cada página deverá possuir:
+
+- Identificador único.
+- Conteúdo HTML válido.
+- Conjunto conhecido de links.
+- Resposta HTTP consistente.
+- Tamanho registrado.
+- Quantidade de links esperada.
+
+As duas APIs devem extrair resultados equivalentes para cada uma das dez páginas.
+
+Evitar utilizar sites externos sujeitos a instabilidade, rate limiting ou alterações de conteúdo, salvo se o enunciado exigir isso.
+
+Testar e registrar previamente:
+
+- Acessibilidade de cada URL.
+- Status HTTP.
+- Quantidade de links extraídos.
+- Tamanho de resposta.
+- Equivalência Python/Ruby.
+
+Todos os experimentos devem usar **exatamente as mesmas dez URLs**.
+
+---
+
+## 6. SCRIPT LOCUST
+
+Criar um `locustfile.py` completo, documentado e testável.
+
+**Comportamento obrigatório:**
+
+Cada usuário virtual executa uma sequência de dez chamadas HTTP à API, uma para cada URL diferente.
+
+A sequência deve preservar a mesma metodologia em todas as configurações.
+
+Implementar:
+
+- Validação de HTTP 200.
+- Validação do formato JSON.
+- Verificação dos resultados extraídos.
+- Identificação das dez URLs.
+- Tempos de espera configuráveis.
+- Timeouts explícitos.
+- Registro de falhas.
+- Configuração de usuários e taxa de criação.
+- Execução headless.
+- Exportação de CSVs.
+- Logs de execução.
+
+Distinguir corretamente:
+
+- Usuário virtual.
+- Sequência de dez URLs.
+- Requisição HTTP individual.
+- Taxa de tarefas.
+- RPS.
+- Percentual de falhas.
+
+O relatório deve explicar o script e demonstrar que os usuários realmente executaram as dez invocações exigidas.
+
+Evitar que um teste termine antes de executar sequências completas suficientes para análise.
+
+---
+
+## 7. MATRIZ EXPERIMENTAL
+
+Proposta inicial de cargas:
+
+- 10 usuários.
+- 50 usuários.
+- 100 usuários.
+
+Esses números são uma proposta, não uma exigência literal do professor.
+
+Validar sua adequação durante os pilotos.
+
+Matriz inicial:
+
+**2 APIs × 2 modos de cache × 3 cargas = 12 combinações.**
+
+Recomendo três repetições por combinação:
+
+**12 × 3 = 36 execuções oficiais.**
+
+Utilizar os mesmos parâmetros temporais nas configurações comparadas.
+
+Proposta inicial:
+
+- Rampa: 30 segundos.
+- Medição: 120 segundos.
+- Três repetições.
+- Intervalo de recuperação entre testes.
+
+Ajustar esses valores somente com justificativa técnica documentada.
+
+**Cache ON:** executar inicialmente medições com cache aquecido, comprovando que as dez URLs estão armazenadas antes do início da coleta.
+
+**Cache OFF:** garantir que nenhuma requisição aproveite Redis.
+
+Opcionalmente, implementar uma campanha complementar com cache frio, separada da matriz principal.
+
+Não misturar cache frio e cache aquecido nos mesmos gráficos sem identificação.
+
+Randomizar ou contrabalançar a ordem das configurações para reduzir o efeito de aquecimento, cache de sistema e sequência temporal.
+
+---
+
+## 8. TESTES-PILOTO OBRIGATÓRIOS
+
+Antes dos experimentos oficiais:
+
+1. Validar o Docker Compose.
+2. Verificar a inicialização de todos os serviços.
+3. Executar as APIs Python e Ruby.
+4. Verificar Redis ligado e desligado.
+5. Executar as dez URLs em ambas as APIs.
+6. Comparar os resultados de extração.
+7. Executar uma carga pequena no Locust.
+8. Validar os CSVs produzidos.
+9. Monitorar CPU, memória e possíveis timeouts.
+10. Confirmar que o gerador de carga não está saturado.
+
+Se algum teste falhar, diagnosticar e corrigir.
+
+Não incluir resultados piloto nas médias da campanha oficial.
+
+**PONTO DE APROVAÇÃO:** após concluir os pilotos, apresentar um relatório resumido e solicitar minha autorização antes de iniciar as 36 execuções oficiais.
+
+Não executar cargas elevadas antes dessa aprovação.
+
+---
+
+## 9. EXECUÇÃO OFICIAL
+
+Após minha aprovação, automatizar a campanha completa.
+
+Para cada execução:
+
+- Selecionar a API.
+- Selecionar o modo de cache.
+- Preparar o estado inicial.
+- Verificar os dez URLs.
+- Verificar disponibilidade dos serviços.
+- Realizar aquecimento conforme o cenário.
+- Iniciar o Locust.
+- Registrar a fase de medição.
+- Salvar as estatísticas.
+- Registrar logs e informações do ambiente.
+- Monitorar uso de CPU e memória.
+- Detectar falhas, reinícios e tempos anormais.
+- Encerrar e preparar a próxima execução.
+
+Não executar duas combinações simultaneamente, pois isso introduziria interferência.
+
+Registrar a duração efetiva, não apenas a duração planejada.
+
+Caso alguma execução apresente anomalias temporais ou saturação do Locust, sinalizar o problema e não tratar o resultado como equivalente aos demais.
+
+Preservar os arquivos brutos.
+
+---
+
+## 10. CSVs E MÉTRICAS
+
+Gerar arquivos para cada execução contendo, quando disponíveis:
+
+- Total de requisições.
+- Requisições bem-sucedidas.
+- Falhas.
+- Taxa de falhas.
+- Tempo médio.
+- Mediana.
+- P90.
+- P95.
+- P99.
+- Tempo mínimo e máximo.
+- RPS.
+- RPS sem falha.
+- Average Content Size.
+- CPU e memória.
+- Duração real do teste.
+- Quantidade de usuários.
+- Linguagem utilizada.
+- Estado do cache.
+- Repetição.
+
+Criar um CSV consolidado que permita comparar as 36 execuções.
+
+Criar também uma tabela com estatísticas agregadas entre as três repetições.
+
+Mostrar dispersão ou desvio-padrão quando houver base suficiente.
+
+**Nunca substituir dados ausentes por números inventados.**
+
+Preservar a rastreabilidade:
+
+`Locust → CSV individual → CSV consolidado → gráficos`
+
+---
+
+## 11. GRÁFICOS OBRIGATÓRIOS
+
+Gerar gráficos comparativos por **métrica**, não por linguagem isoladamente.
+
+Incluir:
+
+1. Tempo médio × usuários.
+2. Mediana × usuários.
+3. P95 × usuários.
+4. P99 × usuários.
+5. RPS × usuários.
+6. Taxa de falhas × usuários.
+7. Python × Ruby com cache OFF.
+8. Python × Ruby com cache ON.
+9. Cache ON × OFF na versão Python.
+10. Cache ON × OFF na versão Ruby.
+11. Ganho percentual do cache.
+12. RPS sem falha, quando aplicável.
+
+Os gráficos devem permitir comparar as quatro configurações claramente.
+
+Usar escalas coerentes, legendas, unidades e informações sobre repetições.
+
+Quando diferenças forem pequenas, não afirmar que são conclusivas sem considerar a variabilidade.
+
+---
+
+## 12. ANÁLISE DOS RESULTADOS
+
+Esta é uma prioridade do trabalho.
+
+Para cada grupo de gráficos, responder:
+
+**O que está sendo medido?**
+
+Definir a métrica.
+
+**O que aconteceu?**
+
+Apresentar números reais.
+
+**Por que pode ter acontecido?**
+
+Relacionar a arquitetura e os parâmetros da execução.
+
+**O que conseguimos concluir?**
+
+Separar fatos, inferências e hipóteses.
+
+Investigar especialmente:
+
+- Se Ruby ou Python apresentou menor latência.
+- Se o resultado muda com a carga.
+- Se Redis melhora o desempenho.
+- Se o ganho de cache é constante.
+- Se os servidores de aplicação limitam a concorrência.
+- Se páginas maiores ou com mais links custam mais.
+- Se a taxa de falhas aumenta com o número de usuários.
+- Se o RPS cresce ou se estabiliza.
+- Se alguma execução apresentou resultado contrário ao esperado.
+- Se o gerador ou o host compartilhado influenciaram os resultados.
+
+Não atribuir causalidade sem evidências.
+
+Explicar também as limitações de executar o Locust e a aplicação no mesmo computador físico.
+
+---
+
+## 13. RELATÓRIO TÉCNICO DE APOIO
+
+Criar um PDF de defesa técnica semelhante ao que foi produzido no Trabalho 3, mas adaptado ao Trabalho 4.
+
+Título:
+
+**TRABALHO 4 — COMPUTAÇÃO DISTRIBUÍDA**
+
+Incluir:
+
+- Arquitetura.
+- Docker Compose.
+- Python.
+- Ruby.
+- Redis.
+- Diferenças entre cache ON/OFF.
+- Dez URLs utilizadas.
+- Script Locust comentado.
+- Metodologia.
+- CSVs.
+- Todos os gráficos.
+- Análise comparativa.
+- Limitações do ambiente.
+- Questões prováveis do professor.
+- Conclusão.
+
+O PDF deve ser material de estudo e consulta, não substituir a apresentação obrigatória.
+
+---
+
+## 14. APRESENTAÇÃO PARA GOOGLE SLIDES
+
+Criar uma apresentação `.pptx` importável no Google Slides.
+
+Utilizar uma estética tecnológica moderna, com fundo escuro e destaques em azul elétrico, ciano e roxo.
+
+A apresentação deve ser objetiva e adequada para defesa oral.
+
+Estrutura sugerida:
+
+1. Capa e integrantes.
+2. Objetivo.
+3. Arquitetura.
+4. Diferenças entre Python e Ruby.
+5. Funcionamento do Redis.
+6. Script Locust.
+7. Dez URLs e metodologia.
+8. Matriz experimental.
+9. Principais resultados de latência.
+10. Principais resultados de RPS.
+11. Comparação com e sem cache.
+12. Falhas e limitações.
+13. Conclusões.
+14. Referências.
+
+Não criar gráficos com dados fictícios.
+
+Inserir notas do apresentador com falas curtas para cada slide.
+
+Deixar nomes e matrículas como campos pendentes caso não estejam disponíveis.
+
+---
+
+## 15. ORGANIZAÇÃO DOS ARQUIVOS
+
+Criar uma estrutura semelhante a:
+
+```text
+Trabalho4-LinkExtractor/
+├── step0/ ... step6/
+└── trabalho4/
+    ├── docker-compose.yml
+    ├── api-python/
+    ├── api-ruby/
+    ├── web/
+    ├── paginas-teste/
+    ├── locust/
+    ├── scripts/
+    ├── configuracoes/
+    ├── resultados/
+    │   ├── pilotos/
+    │   └── oficial/
+    │       ├── execucoes/
+    │       ├── consolidado/
+    │       └── graficos/
+    ├── documentacao/
+    └── apresentacao/
+```
+
+Ajuste a estrutura se houver uma solução tecnicamente superior.
+
+Preserve o código original e permita reproduzir os experimentos.
+
+---
+
+## 16. CRITÉRIOS DE QUALIDADE
+
+Antes de concluir, verificar:
+
+- [ ] O projeto funciona no Docker.
+- [ ] As APIs Python e Ruby respondem corretamente.
+- [ ] Ambas extraem resultados equivalentes das dez URLs.
+- [ ] O cache ON produz hits comprováveis.
+- [ ] O cache OFF ignora Redis.
+- [ ] Locust executa dez URLs diferentes por sequência.
+- [ ] Os testes-piloto foram validados.
+- [ ] A campanha oficial foi aprovada antes de executar.
+- [ ] Todos os CSVs estão preservados.
+- [ ] Todos os resultados usados nos gráficos são reais.
+- [ ] Os gráficos são comparáveis.
+- [ ] As anomalias estão documentadas.
+- [ ] O PDF foi gerado e revisado.
+- [ ] A apresentação foi gerada e revisada.
+- [ ] O Trabalho 3 permanece intacto.
+- [ ] Nenhum arquivo original relevante foi apagado.
+
+Se qualquer item não puder ser concluído, explique a limitação em vez de declarar sucesso indevidamente.
+
+---
+
+## 17. POLÍTICA DE EXECUÇÃO
+
+Você tem autorização para:
+
+- Ler os arquivos do repositório.
+- Criar arquivos dentro do projeto do Trabalho 4.
+- Implementar as APIs experimentais.
+- Configurar Docker Compose.
+- Construir imagens necessárias.
+- Executar testes funcionais e pilotos de baixa carga.
+- Corrigir problemas técnicos.
+- Criar scripts, relatórios e apresentações.
+
+**Solicite aprovação antes de:**
+
+- Iniciar a campanha oficial de carga.
+- Executar testes que possam sobrecarregar o computador.
+- Excluir dados persistentes ou alterar projetos externos.
+- Publicar arquivos, fazer push ou modificar repositórios remotos.
+- Realizar mudanças relevantes fora do diretório autorizado.
+
+Não use comandos de limpeza global do Docker, como `docker system prune`, sem autorização.
+
+Não prometa resultados futuros nem continue em segundo plano após encerrar a sessão.
+
+---
+
+## 18. MODO DE TRABALHO
+
+Utilize o ciclo:
+
+**READ → IMPLEMENT → VERIFY → REPORT**
+
+Trabalhe de maneira autônoma, mas dividida em fases verificáveis.
+
+**FASE 1 — Preparação**
+
+Clonar, auditar dependências e validar ambiente.
+
+**FASE 2 — Implementação**
+
+Construir a arquitetura, configurar cache e implementar o Locust.
+
+**FASE 3 — Validação**
+
+Verificar as dez URLs, equivalência funcional, cache e testes-piloto.
+
+**FASE 4 — Aprovação**
+
+Apresentar os resultados dos pilotos, tempo estimado da campanha e riscos. Aguardar minha autorização.
+
+**FASE 5 — Campanha oficial**
+
+Executar, monitorar e registrar as medições.
+
+**FASE 6 — Análise**
+
+Consolidar CSVs, criar gráficos e interpretar os resultados.
+
+**FASE 7 — Entrega**
+
+Criar e validar o relatório técnico e a apresentação.
+
+Ao concluir cada fase, informar brevemente:
+
+- O que foi implementado.
+- O que foi testado.
+- Quais verificações passaram ou falharam.
+- Quais arquivos foram criados.
+- Qual será a próxima etapa.
+
+**Não fique apenas explicando o que pretende fazer. Execute as etapas permitidas.**
+
+---
+
+## INSTRUÇÃO FINAL
+
+Comece imediatamente pela **FASE 1**, no diretório `C:\compDist`.
+
+O objetivo final é uma implementação funcional e reproduzível, com quatro configurações de API/cache, testes de carga reais, resultados auditáveis, gráficos comparativos e apresentação acadêmica.
+
+Priorize consistência experimental, qualidade da implementação e precisão das conclusões.
+
+**Não inicie a campanha oficial sem minha aprovação explícita.**

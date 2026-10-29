@@ -1,0 +1,119 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 609B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 465B 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337
+#3 ...
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337
+#3 DONE 1.1s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 443B 0.0s done
+#6 DONE 0.0s
+
+#7 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337
+#7 resolve docker.io/library/python:3.12-slim-bookworm@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337 0.1s done
+#7 DONE 0.1s
+
+#8 [2/5] WORKDIR /app
+#8 CACHED
+
+#9 [3/5] COPY requirements*.txt .
+#9 DONE 0.1s
+
+#10 [4/5] RUN pip install --no-cache-dir -r requirements.lock.txt
+#10 2.875 Collecting beautifulsoup4==4.14.2 (from -r requirements.lock.txt (line 1))
+#10 2.941   Downloading beautifulsoup4-4.14.2-py3-none-any.whl.metadata (3.8 kB)
+#10 2.957 Collecting blinker==1.9.0 (from -r requirements.lock.txt (line 2))
+#10 2.966   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#10 2.990 Collecting certifi==2026.10.23 (from -r requirements.lock.txt (line 3))
+#10 2.997   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+#10 3.127 Collecting charset-normalizer==3.5.2 (from -r requirements.lock.txt (line 4))
+#10 3.135   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+#10 3.165 Collecting click==8.5.0 (from -r requirements.lock.txt (line 5))
+#10 3.175   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#10 3.196 Collecting Flask==3.1.2 (from -r requirements.lock.txt (line 6))
+#10 3.205   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+#10 3.228 Collecting gunicorn==23.0.0 (from -r requirements.lock.txt (line 7))
+#10 3.237   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+#10 3.258 Collecting idna==3.20 (from -r requirements.lock.txt (line 8))
+#10 3.266   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#10 3.284 Collecting itsdangerous==2.2.0 (from -r requirements.lock.txt (line 9))
+#10 3.293   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#10 3.312 Collecting Jinja2==3.1.6 (from -r requirements.lock.txt (line 10))
+#10 3.321   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#10 3.394 Collecting MarkupSafe==3.0.4 (from -r requirements.lock.txt (line 11))
+#10 3.402   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#10 3.429 Collecting packaging==26.3 (from -r requirements.lock.txt (line 12))
+#10 3.438   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#10 3.553 Collecting redis==6.4.0 (from -r requirements.lock.txt (line 13))
+#10 3.562   Downloading redis-6.4.0-py3-none-any.whl.metadata (10 kB)
+#10 3.598 Collecting requests==2.32.5 (from -r requirements.lock.txt (line 14))
+#10 3.608   Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+#10 3.632 Collecting soupsieve==3.0.4 (from -r requirements.lock.txt (line 15))
+#10 3.643   Downloading soupsieve-3.0.4-py3-none-any.whl.metadata (4.4 kB)
+#10 3.665 Collecting typing_extensions==4.16.0 (from -r requirements.lock.txt (line 16))
+#10 3.673   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#10 3.701 Collecting urllib3==2.8.0 (from -r requirements.lock.txt (line 17))
+#10 3.710   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#10 3.736 Collecting Werkzeug==3.1.9 (from -r requirements.lock.txt (line 18))
+#10 3.746   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+#10 3.821 Downloading beautifulsoup4-4.14.2-py3-none-any.whl (106 kB)
+#10 3.836 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#10 3.845 Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#10 3.865 Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#10 3.885 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#10 3.903 Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+#10 3.922 Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+#10 3.935 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#10 3.948 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#10 3.956 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#10 3.971 Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#10 3.979 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 3.995 Downloading redis-6.4.0-py3-none-any.whl (279 kB)
+#10 4.018 Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+#10 4.029 Downloading soupsieve-3.0.4-py3-none-any.whl (42 kB)
+#10 4.038 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 4.050 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#10 4.063 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+#10 4.125 Installing collected packages: urllib3, typing_extensions, soupsieve, redis, packaging, MarkupSafe, itsdangerous, idna, click, charset-normalizer, certifi, blinker, Werkzeug, requests, Jinja2, gunicorn, beautifulsoup4, Flask
+#10 5.771 Successfully installed Flask-3.1.2 Jinja2-3.1.6 MarkupSafe-3.0.4 Werkzeug-3.1.9 beautifulsoup4-4.14.2 blinker-1.9.0 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.0 gunicorn-23.0.0 idna-3.20 itsdangerous-2.2.0 packaging-26.3 redis-6.4.0 requests-2.32.5 soupsieve-3.0.4 typing_extensions-4.16.0 urllib3-2.8.0
+#10 5.771 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 5.921 
+#10 5.921 [notice] A new release of pip is available: 25.0.1 -> 26.2.2
+#10 5.921 [notice] To update, run: pip install --upgrade pip
+#10 DONE 6.1s
+
+#11 [5/5] COPY app.py .
+#11 DONE 0.1s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 1.0s done
+#12 exporting manifest sha256:10043e186e7399db82e1ca500714d4c6cbfa591f1dd8b25f32b7a5f87e2d7a67 0.0s done
+#12 exporting config sha256:720fe9ba968814225cbeedd7ccaa7d4cf0445513beb27f548d04ac437057f13b 0.0s done
+#12 exporting attestation manifest sha256:18556fa229f4be8fb3fe0a8e06cbdbb5fdacaaec859f40b63abf27c326cd1910
+#12 exporting attestation manifest sha256:18556fa229f4be8fb3fe0a8e06cbdbb5fdacaaec859f40b63abf27c326cd1910 0.1s done
+#12 exporting manifest list sha256:b0fb97ce7136bb3376c435376c745600f520a472bd3f8d0ed767046501ca0392 0.1s done
+#12 naming to docker.io/library/trabalho4-api-python:1
+#12 naming to docker.io/library/trabalho4-api-python:1 0.0s done
+#12 unpacking to docker.io/library/trabalho4-api-python:1
+#12 unpacking to docker.io/library/trabalho4-api-python:1 0.4s done
+#12 DONE 1.7s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image trabalho4-api-python:1 Building 
+ Image trabalho4-api-python:1 Built 

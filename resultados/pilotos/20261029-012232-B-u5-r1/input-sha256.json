@@ -1,0 +1,20 @@
+{
+  "docker-compose.yml": "12035937ac76a4f0ca43e796c2577163c12f1c82e65024082a43f28c915a8e7a",
+  "configuracoes/campanha.json": "708841ed6d962b4576f646409bbe737a3c6d2d58a0585332bfc560a8b571a049",
+  "paginas-teste/manifest.json": "e75fea920404d0511b2c29d6f576fa7885a1250b9aabadef386295ff16165303",
+  "locust/locustfile.py": "6c35971e5fe8913376a52211012035a5f2b103fb9922db5722dbead99fd74730",
+  "scripts/experimento.py": "1046a9698a757802788cbc0bc207d0cc2dcd5e432b1a75f700a89391260663d3",
+  "scripts/analisar.py": "16bb8ce92cd2d59e701ee3cc17205fea42b05507e2d4c25115e14ade676c3c85",
+  "api-python/app.py": "cc738408812a858d25268398f06b3f8db2f60305d9cac8e5fb5a537cb1f323d5",
+  "api-python/Dockerfile": "47c21236b73fb6ed69ef4c08f4899519ac6c7e18c1376878e5a4d29d495baa15",
+  "api-python/requirements.lock.txt": "77441aad03ad20f5af4bfbfd5579a76430d1ef65de5ed0115a5a0edd11941c85",
+  "api-python/requirements.txt": "26d800d4351c8cc7e455eaf61bb001175db9bbc8fe9ac59610977b281940ef23",
+  "api-ruby/app.rb": "799ce60853e01d99c554bbba7c1162a6035fe6b81f8184e8596df51c1fd44ad7",
+  "api-ruby/config.ru": "120f4cc89b926a55bb263b460d22c7df5aaf6d1d9bcf6972475b269c26857341",
+  "api-ruby/Dockerfile": "72c60b004bca405602d6481ee91f584836bdd8222746bc24a39a175d8617ee18",
+  "api-ruby/Gemfile": "3efdbdeb6b4fe0c632a842a46aea81ed76d1894148e122a243b29889842a2ce3",
+  "api-ruby/Gemfile.lock": "4f9f3dc9945805b9ca485292d7a24d97773806145d835361025a310d6edf84fe",
+  "api-ruby/puma.rb": "bd1ccc9bdac7f42459a175ba4158643e71099a5d4d06cd87bd816a84cb17d58d",
+  "web/Dockerfile": "7575b14377471b24b5ed99d5186e21a3d2540e10303c9683ca992db29351dd7c",
+  "web/index.php": "e2b1a8f3828ebbabb69fd0e87e05ca8e68db9052fea822982ddb449f811a68ba"
+}

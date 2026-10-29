@@ -1,0 +1,98 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 597B 0.1s done
+#1 DONE 0.1s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 504B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ruby:3.3-slim-bookworm@sha256:245eafdd393b298a1bcc6948504b59a117539d46a7fd12ebb8bd2c103f814566
+#3 ...
+
+#4 [auth] library/ruby:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ruby:3.3-slim-bookworm@sha256:245eafdd393b298a1bcc6948504b59a117539d46a7fd12ebb8bd2c103f814566
+#3 DONE 1.1s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 4.58kB 0.0s done
+#6 DONE 0.0s
+
+#7 [1/6] FROM docker.io/library/ruby:3.3-slim-bookworm@sha256:245eafdd393b298a1bcc6948504b59a117539d46a7fd12ebb8bd2c103f814566
+#7 resolve docker.io/library/ruby:3.3-slim-bookworm@sha256:245eafdd393b298a1bcc6948504b59a117539d46a7fd12ebb8bd2c103f814566 0.1s done
+#7 DONE 0.1s
+
+#8 [2/6] WORKDIR /app
+#8 CACHED
+
+#9 [3/6] RUN apt-get update && apt-get install -y --no-install-recommends build-essential libssl-dev && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/6] COPY Gemfile Gemfile.lock* ./
+#10 DONE 0.2s
+
+#11 [5/6] RUN bundle install && bundle clean --force
+#11 3.121 Fetching gem metadata from https://rubygems.org/........
+#11 4.468 Fetching base64 0.3.0
+#11 4.469 Fetching connection_pool 3.0.2
+#11 4.512 Fetching logger 1.7.0
+#11 4.512 Fetching mustermann 3.1.1
+#11 4.512 Fetching racc 1.8.1
+#11 4.512 Fetching nio4r 2.7.5
+#11 4.512 Fetching tilt 2.9.0
+#11 4.512 Fetching rack 3.2.7
+#11 4.730 Installing base64 0.3.0
+#11 4.730 Installing connection_pool 3.0.2
+#11 4.735 Installing logger 1.7.0
+#11 4.740 Installing mustermann 3.1.1
+#11 4.800 Fetching redis-client 0.31.0
+#11 4.816 Installing racc 1.8.1 with native extensions
+#11 4.833 Installing tilt 2.9.0
+#11 4.856 Installing redis-client 0.31.0
+#11 4.872 Installing nio4r 2.7.5 with native extensions
+#11 4.903 Installing rack 3.2.7
+#11 4.985 Fetching redis 5.4.1
+#11 5.030 Installing redis 5.4.1
+#11 5.119 Fetching rack-protection 4.1.1
+#11 5.119 Fetching rack-session 2.1.2
+#11 5.119 Fetching rackup 2.2.1
+#11 5.133 Installing rack-protection 4.1.1
+#11 5.143 Installing rack-session 2.1.2
+#11 5.158 Installing rackup 2.2.1
+#11 5.209 Fetching sinatra 4.1.1
+#11 5.231 Installing sinatra 4.1.1
+#11 6.397 Fetching nokogiri 1.18.10 (x86_64-linux-gnu)
+#11 6.761 Installing nokogiri 1.18.10 (x86_64-linux-gnu)
+#11 11.10 Fetching puma 6.6.1
+#11 11.31 Installing puma 6.6.1 with native extensions
+#11 16.44 Bundle complete! 5 Gemfile dependencies, 17 gems now installed.
+#11 16.44 Gems in the groups 'development' and 'test' were not installed.
+#11 16.44 Use `bundle info [gemname]` to see where a bundled gem is installed.
+#11 DONE 16.9s
+
+#12 [6/6] COPY app.rb config.ru puma.rb ./
+#12 DONE 0.2s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 3.3s done
+#13 exporting manifest sha256:ecdbac98aa5ca2f2d51d3734f758c67cef39f46c26f8df8058c226995390b1bf 0.0s done
+#13 exporting config sha256:522332cd317e755ac7c88025ad4e1919168fe1044c91ccd6773d89ab18cb15c5 0.0s done
+#13 exporting attestation manifest sha256:624e648090857dcf637c4a48d18ddcd873cc91ecdbd4b8b39ddcae16a9a761e1
+#13 exporting attestation manifest sha256:624e648090857dcf637c4a48d18ddcd873cc91ecdbd4b8b39ddcae16a9a761e1 0.1s done
+#13 exporting manifest list sha256:445f9c2dd2879866274c8a827bdab4e732371ad1533e872635944574fae36209 0.0s done
+#13 naming to docker.io/library/trabalho4-api-ruby:1
+#13 naming to docker.io/library/trabalho4-api-ruby:1 done
+#13 unpacking to docker.io/library/trabalho4-api-ruby:1
+#13 unpacking to docker.io/library/trabalho4-api-ruby:1 0.8s done
+#13 DONE 4.4s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image trabalho4-api-ruby:1 Building 
+ Image trabalho4-api-ruby:1 Built 

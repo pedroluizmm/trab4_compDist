@@ -1,0 +1,67 @@
+{
+  "scenario": {
+    "id": "B",
+    "language": "python",
+    "cache": true
+  },
+  "users": 5,
+  "repetition": 1,
+  "kind": "pilot",
+  "config": {
+    "status": "PENDENTE_DE_APROVACAO_EXPLICITA",
+    "seed": 20261029,
+    "users": [
+      10,
+      50,
+      100
+    ],
+    "repetitions": 3,
+    "ramp_seconds": 5,
+    "measurement_seconds": 20,
+    "recovery_seconds": 5,
+    "sequence_wait_min": 1.0,
+    "sequence_wait_max": 2.0,
+    "invocation_wait_seconds": 0.0,
+    "request_timeout_seconds": 10,
+    "max_drain_seconds": 110,
+    "minimum_sequences_per_user": 3,
+    "scenarios": [
+      {
+        "id": "A",
+        "language": "python",
+        "cache": false
+      },
+      {
+        "id": "B",
+        "language": "python",
+        "cache": true
+      },
+      {
+        "id": "C",
+        "language": "ruby",
+        "cache": false
+      },
+      {
+        "id": "D",
+        "language": "ruby",
+        "cache": true
+      }
+    ]
+  },
+  "environment": {
+    "T4_OUTPUT": "/results/pilotos/20261029-011156-B-u5-r1",
+    "T4_RAMP": "5",
+    "T4_MEASURE": "20",
+    "T4_GRACE": "110",
+    "T4_WAIT_MIN": "1.0",
+    "T4_WAIT_MAX": "2.0",
+    "T4_CALL_WAIT": "0.0",
+    "T4_TIMEOUT": "10",
+    "T4_MIN_SEQUENCES": "3",
+    "T4_CACHE": "HIT",
+    "T4_LANGUAGE": "python",
+    "T4_REPETITION": "1",
+    "T4_RUN_ID": "20261029-011156-B-u5-r1"
+  },
+  "started_at": "2026-10-29T01:12:36.988736-03:00"
+}

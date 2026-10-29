@@ -1,0 +1,42 @@
+[
+  {
+    "Command": "\"docker-entrypoint.s\u2026\"",
+    "CreatedAt": "2026-10-11 16:00:13 -0300 -03",
+    "ID": "9b66e6b38ca2",
+    "Image": "ghcr.io/webstore-plataforma-de-ecommerce/store-front-nest-js-api-v3:latest",
+    "Labels": "com.docker.compose.config-hash=683936e19bd53be6ee0a849cb6ac2309d2937b6a3e8ca6fed0c32bf77fa11b04,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.image=sha256:63966e1971f341b2b0c63e9124ad6e9370ec88f7f504f45280c0c91eb6fe0991,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=C:\\webstore-projects\\STOREFRONTS\\storefront\\store-front-nest-js-api-v3\\docker-compose.yml,com.docker.compose.project.working_dir=C:\\webstore-projects\\STOREFRONTS\\storefront\\store-front-nest-js-api-v3,com.docker.compose.project=store-front-nest-js-api-v3,com.docker.compose.replace=storefront-1,com.docker.compose.service=storefront,com.docker.compose.version=5.1.4,desktop.docker.io/binds/0/Source=C:\\webstore-projects\\STOREFRONTS\\storefront\\store-front-nest-js-api-v3\\layout,desktop.docker.io/binds/0/SourceKind=hostFile,desktop.docker.io/binds/0/Target=/app/layout,desktop.docker.io/binds/1/Source=C:\\webstore-projects\\STOREFRONTS\\storefront\\store-front-nest-js-api-v3\\api-overrides,desktop.docker.io/binds/1/SourceKind=hostFile,desktop.docker.io/binds/1/Target=/app/api-overrides,desktop.docker.io/binds/2/Source=C:\\webstore-projects\\STOREFRONTS\\storefront\\store-front-nest-js-api-v3\\.env.devkit_dev,desktop.docker.io/binds/2/SourceKind=hostFile,desktop.docker.io/binds/2/Target=/app/.env_dev,desktop.docker.io/ports.scheme=v2,desktop.docker.io/ports/3000/tcp=:3000",
+    "LocalVolumes": "0",
+    "Mounts": "/run/desktop/m\u2026,/run/desktop/m\u2026,/run/desktop/m\u2026",
+    "Names": "store-front-nest-js-api-v3-storefront-1",
+    "Networks": "store-front-nest-js-api-v3_default",
+    "Platform": {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "Ports": "0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp",
+    "RunningFor": "2 weeks ago",
+    "Size": "401MB (virtual 600MB)",
+    "State": "running",
+    "Status": "Up 12 hours"
+  },
+  {
+    "Command": "\"docker-entrypoint.s\u2026\"",
+    "CreatedAt": "2026-10-04 23:46:05 -0300 -03",
+    "ID": "c9234fba2342",
+    "Image": "redis:7-alpine",
+    "Labels": "com.docker.compose.config-hash=e547c41a0c1fa82d69417eadb9089551f45f91db12fea3b9a23912e4126207ac,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.image=sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=C:\\webstore-projects\\storefront\\store-front-nest-js-api-v3\\docker-compose.yml,com.docker.compose.project.working_dir=C:\\webstore-projects\\storefront\\store-front-nest-js-api-v3,com.docker.compose.project=store-front-nest-js-api-v3,com.docker.compose.service=redis,com.docker.compose.version=5.1.4,desktop.docker.io/ports.scheme=v2",
+    "LocalVolumes": "1",
+    "Mounts": "store-front-ne\u2026",
+    "Names": "store-front-nest-js-api-v3-redis-1",
+    "Networks": "store-front-nest-js-api-v3_default",
+    "Platform": {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "Ports": "6379/tcp",
+    "RunningFor": "3 weeks ago",
+    "Size": "4.1kB (virtual 41.1MB)",
+    "State": "running",
+    "Status": "Up 12 hours"
+  }
+]
