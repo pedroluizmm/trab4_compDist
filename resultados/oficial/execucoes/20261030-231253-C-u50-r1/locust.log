@@ -1,0 +1,7 @@
+[2026-10-31 02:13:03,229] d05ae1a8d089/INFO/locust.main: Starting Locust 2.46.7
+[2026-10-31 02:13:03,237] d05ae1a8d089/INFO/locust.main: No run time limit set, use CTRL+C to interrupt
+[2026-10-31 02:13:03,247] d05ae1a8d089/INFO/locust.runners: Ramping to 50 users at a rate of 1.67 per second
+[2026-10-31 02:13:32,674] d05ae1a8d089/INFO/locust.runners: All users spawned: {"ExtractorUser": 50} (50 total users)
+[2026-10-31 02:13:33,309] d05ae1a8d089/INFO/root: T4_MEASUREMENT_START all users at sequence boundary
+[2026-10-31 02:15:33,365] d05ae1a8d089/INFO/root: T4_MEASUREMENT_END all sequences complete
+[2026-10-31 02:15:33,427] d05ae1a8d089/INFO/locust.main: Shutting down (exit code 0)

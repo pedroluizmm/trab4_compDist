@@ -1,0 +1,34 @@
+{
+  "scenario": {
+    "id": "D",
+    "language": "ruby",
+    "cache": true
+  },
+  "timestamp": "2026-10-31T00:14:21.917826-03:00",
+  "redis_before": {
+    "keyspace_hits": 624688,
+    "keyspace_misses": 140,
+    "get": 624688,
+    "set": 140
+  },
+  "redis_after": {
+    "keyspace_hits": 624698,
+    "keyspace_misses": 150,
+    "get": 624708,
+    "set": 150
+  },
+  "redis_delta": {
+    "keyspace_hits": 10,
+    "keyspace_misses": 10,
+    "get": 20,
+    "set": 10
+  },
+  "cache_keys_verified": 10,
+  "redis_outage": null,
+  "corpus_urls": 10,
+  "passes": 2,
+  "all_match_independent_manifest": true,
+  "invalid_url_status": 400,
+  "legacy_endpoint_passed": true,
+  "php_demo_passed": true
+}

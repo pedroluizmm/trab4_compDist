@@ -1,0 +1,13 @@
+api-ruby-1  | [1] Puma starting in cluster mode...
+api-ruby-1  | [1] * Puma version: 6.6.1 ("Return to Forever")
+api-ruby-1  | [1] * Ruby version: ruby 3.3.13 (2026-10-23 revision af48f08f21) [x86_64-linux]
+api-ruby-1  | [1] *  Min threads: 4
+api-ruby-1  | [1] *  Max threads: 4
+api-ruby-1  | [1] *  Environment: production
+api-ruby-1  | [1] *   Master PID: 1
+api-ruby-1  | [1] *      Workers: 2
+api-ruby-1  | [1] *     Restarts: (✔) hot (✔) phased (✖) refork
+api-ruby-1  | [1] * Listening on http://0.0.0.0:8080
+api-ruby-1  | [1] Use Ctrl-C to stop
+api-ruby-1  | [1] - Worker 0 (PID: 9) booted in 0.36s, phase: 0
+api-ruby-1  | [1] - Worker 1 (PID: 13) booted in 0.36s, phase: 0

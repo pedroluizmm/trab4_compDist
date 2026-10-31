@@ -1,0 +1,14 @@
+[2026-10-31 02:10:10,254] fd77ff4a6f15/INFO/locust.main: Starting Locust 2.46.7
+[2026-10-31 02:10:10,261] fd77ff4a6f15/INFO/locust.main: No run time limit set, use CTRL+C to interrupt
+[2026-10-31 02:10:10,273] fd77ff4a6f15/INFO/locust.runners: Ramping to 10 users at a rate of 0.33 per second
+[2026-10-31 02:10:37,280] fd77ff4a6f15/INFO/locust.runners: All users spawned: {"ExtractorUser": 10} (10 total users)
+[2026-10-31 02:10:40,334] fd77ff4a6f15/INFO/root: T4_MEASUREMENT_START all users at sequence boundary
+[2026-10-31 02:12:40,392] fd77ff4a6f15/INFO/root: T4_MEASUREMENT_END all sequences complete
+[2026-10-31 02:12:40,522] fd77ff4a6f15/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-31 02:12:40,530] fd77ff4a6f15/CRITICAL/locust.main: Unhandled exception in greenlet: <Greenlet at 0x7cd80dfa6840: <bound method StatsCSVFileWriter.stats_writer of <locust.stats.StatsCSVFileWriter object at 0x7cd80dfd4d70>>>
+Traceback (most recent call last):
+  File "src/gevent/greenlet.py", line 912, in gevent._gevent_cgreenlet.Greenlet.run
+  File "/opt/venv/lib/python3.13/site-packages/locust/stats.py", line 1170, in stats_writer
+    self.requests_csv_filehandle.seek(requests_csv_data_start)
+    ^^^^^^^
+ValueError: I/O operation on closed file.

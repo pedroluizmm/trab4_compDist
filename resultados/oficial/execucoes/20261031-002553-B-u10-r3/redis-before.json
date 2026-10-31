@@ -1,0 +1,6 @@
+{
+  "keyspace_hits": 847506,
+  "keyspace_misses": 180,
+  "get": 847506,
+  "set": 180
+}
